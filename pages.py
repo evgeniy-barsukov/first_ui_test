@@ -41,9 +41,9 @@ class InventoryPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver, timeout=60)
 
-        self.item = #Заголовок любого товара: Здесь будет локатор по ID
-        self.add_jacket_to_catr_btn = #Кнопка Add to Cart для Sauce Labs Fleece Jacket: Здесь будет локатор XPATH
-        self.cart_btn = #Кнопка корзины: Здесь будет локатор XPATH
+        self.item = (By.ID, '#item_4_title_link .inventory_item_name')#Заголовок любого товара: Здесь будет локатор по ID
+        self.add_jacket_to_catr_btn = (By.ID, "//button[@id='add-to-cart-sauce-labs-fleece-jacket']")#Кнопка Add to Cart для Sauce Labs Fleece Jacket: Здесь будет локатор XPATH
+        self.cart_btn = (By.XPATH, "//a[@class='shopping_cart_link']")#Кнопка корзины: Здесь будет локатор XPATH
 
     def choose_item(self):
         self.find_element(*self.item).click()
@@ -58,8 +58,8 @@ class ItemPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver, timeout=60)
 
-        self.add_to_cart_btn = #Кнопка Add to Cart: Здесь будет локатор XPATH
-        self.back_to_products = #Кнопка Back to products: Здесь будет локатор XPATH
+        self.add_to_cart_btn = (By.XPATH, "//button[@id='add-to-cart']")#Кнопка Add to Cart: Здесь будет локатор XPATH
+        self.back_to_products = (By.XPATH, "//button[@class='btn btn_secondary back btn_large inventory_details_back_button']")#Кнопка Back to products: Здесь будет локатор XPATH
 
     def add_to_cart_btn_click(self):
         self.find_element(*self.add_to_cart_btn).click()
@@ -71,7 +71,7 @@ class CartPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver, timeout=60)
 
-        self.item_list =    #Локатор XPATH элемента продукта. Локатор должен находить
+        self.item_list = (By.XPATH ,"(//div[@class='inventory_item_name'])[position()=1 or position()=2]")   #Локатор XPATH элемента продукта. Локатор должен находить
                             # ровно 2 элемента на странице: первый и второй товар
                             # то есть в DevTools вы должны видеть "1 of 2" при поиске данного локатора
 
